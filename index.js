@@ -9,10 +9,10 @@ const config = {
     database: "appDB",
   };
   
-  app.get("/", async (req, res) => {
+  app.get("/connect", async (req, res) => {
       try {
           await sql.connect(config);
-          res.send("DB Connected");
+          res.json("DB Connected");
       } catch(err)
       {
           res.send(err);
@@ -20,7 +20,7 @@ const config = {
   });
   
 
-app.listen(3000, () => console.log("api running on port 5001"));
+app.listen(3000, () => console.log("api running on port 3000"));
 
 app.get('/store-products', (req, res) => {
     res.json("product is being stored")
@@ -29,9 +29,3 @@ app.get('/store-products', (req, res) => {
 app.get('/list-products', (req, res) => {
     res.json("listing all products")
 });
-
-
-const port = process.env.PORT || 5000;
-  app.listen(port, () => {
-    console.log(`service is running on:: [${port}]`);
-  });
