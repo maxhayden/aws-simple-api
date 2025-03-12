@@ -1,12 +1,14 @@
 import express from "express"
 import sql from "mssql"
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express()
 
 const config = {
     server: process.env.DBHOST,
     user: process.env.DBUSER,
-    port: "3306",
+    port: process.env.PORT,
     password: process.env.DBPASSWORD,
     database: process.env.DATABASE,
   };
