@@ -6,7 +6,7 @@ dotenv.config();
 const app = express()
 
 const config = {
-    server: process.env.DBHOST,
+    host: process.env.DBHOST,
     user: process.env.DBUSER,
     port: process.env.PORT,
     password: process.env.DBPASSWORD,
