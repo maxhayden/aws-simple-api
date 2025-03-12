@@ -1,9 +1,10 @@
-import express from "express"
-import sql from "mysql"
+import express from "express";
+import sql from "mysql";
 import dotenv from "dotenv";
 dotenv.config();
 
-const app = express()
+const app = express();
+app.use(express.urlencoded({ extended: true }));
 
 const config = {
     host: process.env.DBHOST,
@@ -17,7 +18,12 @@ var con = sql.createConnection(config);
 
 app.listen(80, () => console.log("api running on port 3000"));
 
-app.get('/store-products', (req, res) => {
+app.post('/store-products', (req, res) => {
+    const products = req.body.products;
+  
+    // Process the form data
+    console.log(products[0]);
+
     res.status(200);
     res.json({
         "message": "Success."
