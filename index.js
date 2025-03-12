@@ -5,35 +5,33 @@ dotenv.config();
 
 const app = express()
 
-const config = {
-    host: process.env.DBHOST,
-    user: process.env.DBUSER,
-    port: process.env.DBPORT,
-    password: process.env.DBPASSWORD,
-    database: process.env.DATABASE,
-  };
+console.log(config);
 
-  console.log(config);
+var con = sql.createConnection(config);
 
-  var con = sql.createConnection(config);
-  
-  app.get("/connect", async (req, res) => {
-    con.connect(function(err) {
-        console.log(err);
-      });
-  });
-  
-
-app.listen(3000, () => console.log("api running on port 3000"));
+app.listen(80, () => console.log("api running on port 3000"));
 
 app.get('/store-products', (req, res) => {
-    res.json("product is being stored")
+    res.status(200);
+    res.json({
+        "message": "Success."
+     })
 });
 
 app.get('/list-products', (req, res) => {
-    con.connect(function(err) {
+    con.connect(function (err) {
         con.query("SELECT * FROM products", function (err, result, fields) {
-          res.json(result);
+            res.status(200);
+            res.json(result);
         });
-      });
+    });
+});
+
+app.get('/clear', (req, res) => {
+    con.connect(function (err) {
+        con.query("DELETE * FROM products", function (err, result, fields) {
+            res.status(200);
+            res.json(result);
+        });
+    });
 });
