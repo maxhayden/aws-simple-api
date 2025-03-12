@@ -41,7 +41,7 @@ app.get('/list-products', (req, res) => {
         con.query("SELECT * FROM products", function (err, result, fields) {
             console.log(err);
             res.status(200);
-            res.json(result);
+            res.json({"products":result});
         });
     });
 });
