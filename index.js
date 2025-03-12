@@ -1,5 +1,7 @@
 import express from "express"
 
+const app = express()
+
 const config = {
     user: "admin",
     password: "ayl3yh23",
@@ -17,8 +19,6 @@ const config = {
       }
   });
   
-
-const app = express()
 
 app.listen(3000, () => console.log("api running on port 5001"));
 
