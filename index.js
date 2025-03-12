@@ -4,7 +4,7 @@ import sql from "mssql"
 const app = express()
 
 const config = {
-    host: process.env.DBHOST,
+    server: process.env.DBHOST,
     user: process.env.DBUSER,
     port: "3306",
     password: process.env.DBPASSWORD,
