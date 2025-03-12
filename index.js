@@ -2,7 +2,6 @@ import express from "express"
 import sql from "mysql"
 import dotenv from "dotenv";
 dotenv.config();
-console.log("Database Host:", process.env.DBHOST);
 
 const app = express()
 
@@ -13,6 +12,8 @@ const config = {
     password: process.env.DBPASSWORD,
     database: process.env.DATABASE,
   };
+
+  console.log(config);
 
   var con = sql.createConnection(config);
   
