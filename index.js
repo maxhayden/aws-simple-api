@@ -31,5 +31,9 @@ app.get('/store-products', (req, res) => {
 });
 
 app.get('/list-products', (req, res) => {
-    res.json("listing all products")
+    con.connect(function(err) {
+        con.query("SELECT * FROM products", function (err, result, fields) {
+          res.json(result);
+        });
+      });
 });
