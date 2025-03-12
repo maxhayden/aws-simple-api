@@ -1,5 +1,5 @@
 import express from "express"
-import sql from "mssql"
+import sql from "mysql"
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -12,15 +12,14 @@ const config = {
     password: process.env.DBPASSWORD,
     database: process.env.DATABASE,
   };
+
+  var con = sql.createConnection(config);
   
   app.get("/connect", async (req, res) => {
-    try {
-        await sql.connect(config)
-        const result = await sql.query`select * from products`;
-        console.dir(result)
-       } catch (err) {
-        console.log(err);
-       }
+    con.connect(function(err) {
+        if (err) throw err;
+        console.log("Connected!");
+      });
   });
   
 
