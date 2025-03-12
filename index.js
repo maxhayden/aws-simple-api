@@ -13,7 +13,7 @@ const config = {
     port: process.env.PORT,
     password: process.env.DBPASSWORD,
     database: process.env.DATABASE,
-  };
+};
 
 var con = sql.createConnection(config);
 
@@ -21,14 +21,19 @@ app.listen(80, () => console.log("api running on port 3000"));
 
 app.post('/store-products', (req, res) => {
     const products = req.body.products;
-  
-    // Process the form data
-    console.log(products);
+
+    con.connect(function (err) {
+        products.forEach((product) => {
+            con.query(`INSERT INTO products (name, price, availability) VALUES (${product.name}, ${product.price}, ${product.availability})`, function (err, result, fields) {
+                console.log(err);
+            });
+        });
+    });
 
     res.status(200);
     res.json({
         "message": "Success."
-     })
+    })
 });
 
 app.get('/list-products', (req, res) => {
