@@ -1,22 +1,24 @@
 import express from "express"
+import sql from "mssql"
 
 const app = express()
 
 const config = {
-    user: "admin",
-    password: "ayl3yh23",
-    server: "two-tier-app-db.cwnjetnzxoed.us-east-1.rds.amazonaws.com",
-    database: "appDB",
+    host: process.env.DBHOST,
+    user: process.env.DBUSER,
+    port: "3306",
+    password: process.env.DBPASSWORD,
+    database: process.env.DATABASE,
   };
   
   app.get("/connect", async (req, res) => {
-      try {
-          await sql.connect(config);
-          res.json("DB Connected");
-      } catch(err)
-      {
-          res.send(err);
-      }
+    try {
+        await sql.connect(config)
+        const result = await sql.query`select * from products`;
+        console.dir(result)
+       } catch (err) {
+        console.log(err);
+       }
   });
   
 
