@@ -17,7 +17,7 @@ const config = {
   
   app.get("/connect", async (req, res) => {
     con.connect(function(err) {
-        console.log("Connected!");
+        console.log(err);
       });
   });
   
