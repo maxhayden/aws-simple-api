@@ -2,6 +2,7 @@ import express from "express"
 import sql from "mysql"
 import dotenv from "dotenv";
 dotenv.config();
+console.log("Database Host:", process.env.DBHOST);
 
 const app = express()
 
