@@ -27,6 +27,7 @@ app.get('/store-products', (req, res) => {
 app.get('/list-products', (req, res) => {
     con.connect(function (err) {
         con.query("SELECT * FROM products", function (err, result, fields) {
+            console.log(err);
             res.status(200);
             res.json(result);
         });
@@ -36,6 +37,7 @@ app.get('/list-products', (req, res) => {
 app.get('/clear', (req, res) => {
     con.connect(function (err) {
         con.query("DELETE * FROM products", function (err, result, fields) {
+            console.log(err);
             res.status(200);
             res.json(result);
         });
