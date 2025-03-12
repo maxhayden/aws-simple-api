@@ -22,7 +22,7 @@ app.post('/store-products', (req, res) => {
     const products = req.body.products;
   
     // Process the form data
-    console.log(products[0]);
+    console.log(products);
 
     res.status(200);
     res.json({
