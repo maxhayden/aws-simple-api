@@ -5,7 +5,13 @@ dotenv.config();
 
 const app = express()
 
-console.log(config);
+const config = {
+    host: process.env.DBHOST,
+    user: process.env.DBUSER,
+    port: process.env.PORT,
+    password: process.env.DBPASSWORD,
+    database: process.env.DATABASE,
+  };
 
 var con = sql.createConnection(config);
 
