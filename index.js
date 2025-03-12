@@ -24,7 +24,7 @@ app.post('/store-products', (req, res) => {
 
     con.connect(function (err) {
         products.forEach((product) => {
-            con.query(`INSERT INTO products (name, price, availability) VALUES (${product.name}, ${product.price}, ${product.availability})`, function (err, result, fields) {
+            con.query(`INSERT INTO products (name, price, availability) VALUES ("${product.name}", "${product.price}", ${product.availability})`, function (err, result, fields) {
                 console.log(err);
             });
         });
